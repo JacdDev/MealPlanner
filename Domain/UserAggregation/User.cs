@@ -5,10 +5,15 @@
         public Guid UserId { get; private set; }
         public string Name { get; private set; }
 
-        public User(Guid userId, string name)
+        private User(Guid userId, string name)
         {
             UserId = userId;
             Name = name;
+        }
+
+        public static User Create(string name) 
+        { 
+            return new User(Guid.NewGuid(), name);
         }
     }
 }

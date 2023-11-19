@@ -18,14 +18,16 @@ namespace Application.Users.Commands.CreateUser
 
         public async Task<ErrorOr<Guid>> Handle(CreateUserCommand request, CancellationToken cancellationToken)
         {
-            var createUserResult = await _identityService.CreateUserAsync(request.Email, request.Password);
+            var newUser = User.Create(request.Email);
+
+            var createUserResult = await _identityService.CreateUserAsync(newUser.UserId, request.Email, request.Password);
 
             if (createUserResult.IsError)
             {
                 return createUserResult;
             }
 
-            _context.Users.Add(new User(createUserResult.Value, request.Email));
+            _context.Users.Add(newUser);
 
             _context.SaveChanges();
 

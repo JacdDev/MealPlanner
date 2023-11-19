@@ -1,0 +1,9 @@
+version: '3'
+services:
+  sql-server:
+    image: mcr.microsoft.com/mssql/server:latest
+    environment:
+      ACCEPT_EULA: 'Y'
+      SA_PASSWORD: 'SqL{3s<hu-Ga:x6ey,twQp'
+    ports:
+      - 1433:1433
