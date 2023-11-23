@@ -16,6 +16,11 @@ namespace Infrastructure.Persistence
     {
         DbSet<User> IApplicationDbContext.Users => Set<User>();
 
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+            : base(options)
+        {
+
+        }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
