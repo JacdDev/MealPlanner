@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace Infrastructure
 {
@@ -30,6 +31,7 @@ namespace Infrastructure
             services
                 .AddIdentityCore<ApplicationUser>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddTransient<IUserStore<ApplicationUser>, CustomUserStore>();
             services.AddTransient<IIdentityService, IdentityService>();
 
 

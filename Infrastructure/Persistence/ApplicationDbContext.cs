@@ -12,14 +12,14 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Persistence
 {
-    internal class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IApplicationDbContext
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IApplicationDbContext
     {
         DbSet<User> IApplicationDbContext.Users => Set<User>();
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
-
+            
         }
         protected override void OnModelCreating(ModelBuilder builder)
         {
